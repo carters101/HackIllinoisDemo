@@ -1,0 +1,8 @@
+struct EventData: Codable {
+    let name: String
+    let description: String
+    let startTime: int
+    let endTime: int
+    let sponsor: String
+    let eventType: String
+}
