@@ -10,7 +10,7 @@ import UIKit
 
 public let urlString = "https://api.hackillinois.org/event/"
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
     var eventArr = [Event]()
     
     override func viewDidLoad() {
@@ -22,8 +22,17 @@ class ViewController: UIViewController {
                 
             }
         }
-        
-        
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventArr.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let event = eventArr[indexPath.row]
+        cell.textLabel?.text = event.name
+        return cell
     }
     
     // Parse the JSON data into the EventList struct
@@ -33,6 +42,7 @@ class ViewController: UIViewController {
         
         if let jsonEvents = try? decoder.decode(EventList.self, from: json) {
             eventArr = jsonEvents.events
+            tableView.reloadData()
         }
     }
     
