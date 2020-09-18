@@ -8,56 +8,34 @@
 
 import UIKit
 
-public let url = "https://api.hackillinois.org/event/"
+public let urlString = "https://api.hackillinois.org/event/"
 
 class ViewController: UIViewController {
-
+    var eventArr = [Event]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getData(from: url)
-    }
-    
-    /*
-    private func getData() {
-        let url = URL(string: "https://api.hackillinois.org/event/")!
+        if let url = URL(string: urlString) {
+            if let data = try? Data(contentsOf: url) {
+                parse(json: data)
+                
+            }
+        }
         
-        URLSession.shared.dataTask(with: url) {(data, response, error) in
-            
-            do {
-
-                print(EventArr.self)
-            }
-            catch
-            {
-                print("error: data cannot be found")
-            }
-            
-        }.resume()
-    } */
-    
-    
-    private func getData(from url: String) {
-        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
-            guard let data = data, error == nil else {
-                print("An error has occurred!")
-                return
-            }
-            
-            // Convert data to the struct
-            var eventList: EventList
-            do {
-                eventList = try JSONDecoder().decode(EventList.self,from: data)
-                print(eventList.events[0].name)
-            
-            }
-            catch {
-                print("failed to convert: \(error)")
-            }
-                        
-            }).resume()
         
     }
+    
+    // Parse the JSON data into the EventList struct
+    func parse(json: Data) {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        
+        if let jsonEvents = try? decoder.decode(EventList.self, from: json) {
+            eventArr = jsonEvents.events
+        }
+    }
+    
 }
 
 

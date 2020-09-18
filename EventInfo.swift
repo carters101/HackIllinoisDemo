@@ -14,7 +14,7 @@ public struct Event: Codable {
     let description: String
     let startTime: Date
     let endTime: Date
-    let locations: [String]
+    let locations: [String]?
     let sponsor: String
     let eventType: String
     
@@ -31,8 +31,8 @@ public struct Event: Codable {
     
 }
 
-public struct EventList: Decodable {
-    let events: [Event]
+public struct EventList: Codable {
+    var events: [Event]
 
 }
 
