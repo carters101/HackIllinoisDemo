@@ -22,6 +22,9 @@ class ViewController: UITableViewController {
                 
             }
         }
+        
+        
+    
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,9 +32,13 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "simpleTableViewCell", for: indexPath) as! SimpleTableViewCell
         let event = eventArr[indexPath.row]
-        cell.textLabel?.text = event.name
+        cell.nameLabel.text = event.name
+        cell.descLabel.text = event.description
+        cell.typeLabel.text = event.eventType
+        
+        
         return cell
     }
     

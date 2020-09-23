@@ -14,6 +14,7 @@
 		3F545B712509C67A009A89CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F545B702509C67A009A89CD /* Assets.xcassets */; };
 		3F545B742509C67A009A89CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F545B722509C67A009A89CD /* LaunchScreen.storyboard */; };
 		3F545B80250EFF35009A89CD /* EventInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F545B7F250EFF35009A89CD /* EventInfo.swift */; };
+		3F545B882519048F009A89CD /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F545B872519048F009A89CD /* SimpleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3F545B732509C67A009A89CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F545B752509C67A009A89CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F545B7F250EFF35009A89CD /* EventInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfo.swift; sourceTree = "<group>"; };
+		3F545B872519048F009A89CD /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				3F545B702509C67A009A89CD /* Assets.xcassets */,
 				3F545B722509C67A009A89CD /* LaunchScreen.storyboard */,
 				3F545B752509C67A009A89CD /* Info.plist */,
+				3F545B872519048F009A89CD /* SimpleTableViewCell.swift */,
 			);
 			path = HackIllinoisDemo;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				3F545B80250EFF35009A89CD /* EventInfo.swift in Sources */,
 				3F545B6C2509C677009A89CD /* ViewController.swift in Sources */,
 				3F545B682509C677009A89CD /* AppDelegate.swift in Sources */,
+				3F545B882519048F009A89CD /* SimpleTableViewCell.swift in Sources */,
 				3F545B6A2509C677009A89CD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
