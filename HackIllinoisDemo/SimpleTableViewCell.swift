@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class SimpleTableViewCell: UITableViewCell {
     
@@ -14,7 +15,6 @@ class SimpleTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
-    
-    
+        
 
 }

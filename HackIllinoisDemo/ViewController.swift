@@ -22,8 +22,6 @@ class ViewController: UITableViewController {
                 
             }
         }
-        
-        
     
     }
     
@@ -36,7 +34,28 @@ class ViewController: UITableViewController {
         let event = eventArr[indexPath.row]
         cell.nameLabel.text = event.name
         cell.descLabel.text = event.description
-        cell.typeLabel.text = event.eventType
+        
+        if event.eventType == "WORKSHOP" {
+            cell.typeLabel.text = event.eventType
+            cell.typeLabel.backgroundColor = UIColor.systemBlue
+            
+        } else if event.eventType == "MINIEVENT" {
+            cell.typeLabel.text = event.eventType
+            cell.typeLabel.backgroundColor = UIColor.systemGreen
+            
+        } else if event.eventType == "SPEAKER" {
+            cell.typeLabel.text = event.eventType
+            cell.typeLabel.backgroundColor = UIColor.systemOrange
+            
+        } else if event.eventType == "MEAL" {
+            cell.typeLabel.text = event.eventType
+            cell.typeLabel.backgroundColor = UIColor.systemYellow
+            
+        } else {
+            cell.typeLabel.text = event.eventType
+            cell.typeLabel.backgroundColor = UIColor.systemGray
+        }
+        
         
         
         return cell
