@@ -15,6 +15,7 @@
 		3F545B742509C67A009A89CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F545B722509C67A009A89CD /* LaunchScreen.storyboard */; };
 		3F545B80250EFF35009A89CD /* EventInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F545B7F250EFF35009A89CD /* EventInfo.swift */; };
 		3F545B882519048F009A89CD /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F545B872519048F009A89CD /* SimpleTableViewCell.swift */; };
+		3FDE0CCF2521379700123E1A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDE0CCE2521379700123E1A /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3F545B752509C67A009A89CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F545B7F250EFF35009A89CD /* EventInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfo.swift; sourceTree = "<group>"; };
 		3F545B872519048F009A89CD /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
+		3FDE0CCE2521379700123E1A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				3F545B692509C677009A89CD /* SceneDelegate.swift */,
 				3F545B6B2509C677009A89CD /* ViewController.swift */,
 				3F545B6D2509C677009A89CD /* Main.storyboard */,
+				3FDE0CCE2521379700123E1A /* DetailViewController.swift */,
 				3F545B702509C67A009A89CD /* Assets.xcassets */,
 				3F545B722509C67A009A89CD /* LaunchScreen.storyboard */,
 				3F545B752509C67A009A89CD /* Info.plist */,
@@ -147,6 +150,7 @@
 				3F545B80250EFF35009A89CD /* EventInfo.swift in Sources */,
 				3F545B6C2509C677009A89CD /* ViewController.swift in Sources */,
 				3F545B682509C677009A89CD /* AppDelegate.swift in Sources */,
+				3FDE0CCF2521379700123E1A /* DetailViewController.swift in Sources */,
 				3F545B882519048F009A89CD /* SimpleTableViewCell.swift in Sources */,
 				3F545B6A2509C677009A89CD /* SceneDelegate.swift in Sources */,
 			);

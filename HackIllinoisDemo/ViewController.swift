@@ -12,9 +12,11 @@ public let urlString = "https://api.hackillinois.org/event/"
 
 class ViewController: UITableViewController {
     var eventArr = [Event]()
+     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
@@ -25,6 +27,25 @@ class ViewController: UITableViewController {
     
     }
     
+    func setupNavBar() {
+        navigationItem.title = "Hack Illinois Schedule"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
+    }
+    /*
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Header"
+        label.backgroundColor = UIColor.lightGray
+        return label
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    } */
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventArr.count
     }
@@ -32,6 +53,25 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "simpleTableViewCell", for: indexPath) as! SimpleTableViewCell
         let event = eventArr[indexPath.row]
+        
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .short
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
+        let startTime = timeFormatter.string(from: event.startTime)
+        let endTime = timeFormatter.string(from: event.endTime)
+        let startDate = dateFormatter.string(from: event.startTime)
+        
+        if startTime == endTime {
+            cell.timeLabel.text = "\(startTime)"
+        } else {
+            cell.timeLabel.text = "\(startTime) - \(endTime)"
+        }
+        
         cell.nameLabel.text = event.name
         cell.descLabel.text = event.description
         
@@ -55,13 +95,22 @@ class ViewController: UITableViewController {
             cell.typeLabel.text = " \(event.eventType) "
             cell.typeLabel.backgroundColor = UIColor.systemGray
         }
-        
-        
+
         
         return cell
     }
     
-    // Parse the JSON data into the EventList struct
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetail", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? DetailViewController {
+            destination.detailItem = eventArr[(tableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+    
+    // MARK: Parse JSON into EventList
     func parse(json: Data) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
