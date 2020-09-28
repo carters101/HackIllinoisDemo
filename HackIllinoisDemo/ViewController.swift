@@ -12,19 +12,30 @@ public let urlString = "https://api.hackillinois.org/event/"
 
 class ViewController: UITableViewController {
     var eventArr = [Event]()
+    var filteredArr = [Event]()
      
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        filteredArr = eventArr
         setupNavBar()
+        super.viewDidLoad()
         
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
-                
             }
         }
+    }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            filteredArr = eventArr.filter { event in
+                return event.name.lowercased().contains(searchText.lowercased())
+            }
+        } else {
+            filteredArr = eventArr
+        }
+        tableView.reloadData()
     }
     
     func setupNavBar() {
@@ -34,19 +45,11 @@ class ViewController: UITableViewController {
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
     }
-    /*
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.text = "Header"
-        label.backgroundColor = UIColor.lightGray
-        return label
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    } */
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /*guard let events = filteredArr else {
+            return 0
+        }*/
         return eventArr.count
     }
     
@@ -67,9 +70,9 @@ class ViewController: UITableViewController {
         let startDate = dateFormatter.string(from: event.startTime)
         
         if startTime == endTime {
-            cell.timeLabel.text = "\(startTime)"
+            cell.timeLabel.text = "\(startDate) @ \(startTime)"
         } else {
-            cell.timeLabel.text = "\(startTime) - \(endTime)"
+            cell.timeLabel.text = "\(startDate) @ \(startTime) - \(endTime)"
         }
         
         cell.nameLabel.text = event.name
@@ -96,7 +99,6 @@ class ViewController: UITableViewController {
             cell.typeLabel.backgroundColor = UIColor.systemGray
         }
 
-        
         return cell
     }
     

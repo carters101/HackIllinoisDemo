@@ -14,13 +14,56 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailNameLabel: UILabel!
     @IBOutlet weak var detailTimeLabel: UILabel!
     @IBOutlet weak var detailDescLabel: UILabel!
-    @IBOutlet weak var detailTypelabel: UILabel!
+    @IBOutlet weak var detailTypeLabel: UILabel!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .short
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
+        let startTime = timeFormatter.string(from: (detailItem?.startTime)!)
+        let endTime = timeFormatter.string(from: (detailItem?.endTime)!)
+        let startDate = dateFormatter.string(from: (detailItem?.startTime)!)
+        
+        if startTime == endTime {
+            detailTimeLabel.text = "\(startDate) @ \(startTime) \n"
+        } else {
+            detailTimeLabel.text = "\(startDate) @ \(startTime) - \(endTime) \n"
+        }
+        
         detailNameLabel.text = "\((detailItem?.name)!)"
+        detailDescLabel.text = "\((detailItem?.description)!)"
+        
+        if detailItem?.eventType == "WORKSHOP" {
+            detailTypeLabel.text = " \((detailItem?.eventType)!) "
+            detailTypeLabel.backgroundColor = UIColor.systemBlue
+            
+        } else if detailItem?.eventType == "MINIEVENT" {
+            detailTypeLabel.text = " \((detailItem?.eventType)!) "
+            detailTypeLabel.backgroundColor = UIColor.systemGreen
+            
+        } else if detailItem?.eventType == "SPEAKER" {
+            detailTypeLabel.text = " \((detailItem?.eventType)!) "
+            detailTypeLabel.backgroundColor = UIColor.systemOrange
+            
+        } else if detailItem?.eventType == "MEAL" {
+            detailTypeLabel.text = " \((detailItem?.eventType)!) "
+            detailTypeLabel.backgroundColor = UIColor.systemYellow
+            
+        } else {
+            detailTypeLabel.text = " \((detailItem?.eventType)!) "
+            detailTypeLabel.backgroundColor = UIColor.systemGray
+        }
+
+        
  
     }
     
