@@ -12,11 +12,12 @@ public let urlString = "https://api.hackillinois.org/event/"
 
 class ViewController: UITableViewController {
     var eventArr = [Event]()
-    var filteredArr = [Event]()
+    //var filteredArr = [Event]()
+
      
     
     override func viewDidLoad() {
-        filteredArr = eventArr
+        // filteredArr = eventArr
         setupNavBar()
         super.viewDidLoad()
         
@@ -27,35 +28,35 @@ class ViewController: UITableViewController {
         }
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            filteredArr = eventArr.filter { event in
-                return event.name.lowercased().contains(searchText.lowercased())
-            }
-        } else {
-            filteredArr = eventArr
-        }
+    /*
+    func filterRowsForSearchedText(_ searchText: String) {
+        filteredArr = eventArr.filter({( event : Event) -> Bool in
+            return event.name.lowercased().contains(searchText.lowercased()) || event.name.lowercased().contains(searchText.lowercased())
+        })
         tableView.reloadData()
-    }
+    } */
     
     func setupNavBar() {
         navigationItem.title = "Hack Illinois Schedule"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*guard let events = filteredArr else {
-            return 0
-        }*/
         return eventArr.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "simpleTableViewCell", for: indexPath) as! SimpleTableViewCell
         let event = eventArr[indexPath.row]
+        /*
+        let event: Event
+        if searchController.isActive && searchController.searchBar.text != "" {
+            event = filteredArr[indexPath.row]
+        } else {
+            event = eventArr[indexPath.row]
+        } */
         
         let timeFormatter = DateFormatter()
         timeFormatter.dateStyle = .none
@@ -124,5 +125,13 @@ class ViewController: UITableViewController {
     }
     
 }
+/*
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let term = searchController.searchBar.text {
+            filterRowsForSearchedText(term)
+        }
+    }
+} */
 
 
